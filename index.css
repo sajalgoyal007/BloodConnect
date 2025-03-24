@@ -32,7 +32,7 @@
 }
 /* 🔹 Body Styling (Single Background Image) */
 body {
-    background: url('/image/blood-donation.jpg') no-repeat center center fixed;
+    background: url('./blood-donation.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
