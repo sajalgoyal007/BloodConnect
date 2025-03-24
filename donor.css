@@ -1,0 +1,155 @@
+/* 🌐 Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.logo-container {
+    position: absolute; /* Fixed left corner position */
+    top: 15px; /* Upar se halka gap */
+    left: 15px; /* Left se halka gap */
+}
+
+.logo {
+    width: 120px; /* Compact size */
+    height: auto; /* Aspect ratio maintain hoga */
+}
+
+/* 📜 Body Styling */
+body {
+    background: url('/image/human-blood-donate.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    flex-direction: column;
+}
+
+/* Go Home Icon Styling */
+.home-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+    transform: scale(1.2);
+}
+
+/* 📋 Container */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+/* 🩸 Heading */
+h1 {
+    color: #b22222;
+    margin-bottom: 20px;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+/* 🔍 Filter Section */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* 📊 Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🧾 Table Header */
+th {
+    background: #b22222;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+}
+
+/* 📄 Table Rows */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* 🎨 Alternate Row Colors */
+tr:nth-child(even) {
+    background: #f8d7da;
+}
+
+tr:hover {
+    background: #f1c0c5;
+}
+
+/* 📞 Call Button */
+.call-btn {
+    text-decoration: none;
+    background-color: #b22222;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.call-btn:hover {
+    background-color: #8b0000;
+    transform: scale(1.05);
+}
+
+/* ✅ Status Colors */
+.available {
+    color: green;
+    font-weight: bold;
+}
+
+.unavailable {
+    color: red;
+    font-weight: bold;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+/* 🚫 Error Message */
+.hidden {
+    display: none;
+}

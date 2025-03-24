@@ -1,0 +1,135 @@
+/* 🔹 Body Styling */
+body {
+    background: url('/image/Blood-Donation-2.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo-container {
+    position: absolute; /* Fixed left corner position */
+    top: 15px; /* Upar se halka gap */
+    left: 15px; /* Left se halka gap */
+}
+
+.logo {
+    width: 120px; /* Compact size */
+    height: auto; /* Aspect ratio maintain hoga */
+}
+
+/* Go Home Icon Styling */
+.home-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+    transform: scale(1.2);
+}
+
+/* 🔹 Form Container with Fade-In Animation */
+.form-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🔹 Form Heading */
+h1 {
+    color: #b22222; /* Dark Red */
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+/* 🔹 Form Group */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* 🔹 Input Fields */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+/* 🔹 Focus Indicator */
+input:focus, select:focus {
+    outline: 3px solid #b22222;
+    outline-offset: 2px;
+}
+
+/* 🔹 Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #b22222;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #8b0000;
+    transform: scale(1.05);
+}
+
+.submit-btn:active {
+    transform: scale(0.95);
+}
+
+/* 🔹 Error Message */
+.error-message {
+    color: #b22222;
+    font-size: 14px;
+}
+
+/* 🔹 Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+}
+

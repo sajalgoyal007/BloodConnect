@@ -1,0 +1,130 @@
+/* 🔹 Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+.logo-container {
+    position: absolute; /* Fixed left corner position */
+    top: 15px; /* Upar se halka gap */
+    left: 15px; /* Left se halka gap */
+}
+
+.logo {
+    width: 120px; /* Compact size */
+    height: auto; /* Aspect ratio maintain hoga */
+}
+
+
+/* Go Home Icon Styling */
+.home-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+    transform: scale(1.2);
+}
+/* 🔹 Body Styling (Single Background Image) */
+body {
+    background: url('/image/blood-donation.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔹 Main Container */
+.container {
+    background: white;
+    padding: 60px; /* Larger container */
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
+    animation: fadeIn 1.5s ease-in-out forwards;
+    opacity: 0; /* Initially hidden */
+}
+/* 🔹 Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🔹 Header Section */
+header {
+    background:  #ca2323; /* Blood Red */
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+/* 🔹 Main Title */
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* 🔹 Subtitle */  
+p {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+/* 🔹 Button Container */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Space between buttons */
+}
+
+/* 🔹 Button Styling */
+.btn {
+    text-decoration: none;
+    background:  #ca2323;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Button Hover Effect */
+.btn:hover {
+    background: #ca2323;
+    transform: scale(1.1);
+}
+
+/* 🔹 Responsive Design (Mobile Friendly) */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 40px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+} 

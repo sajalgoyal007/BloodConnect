@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Blood Donors</title>
+    <link rel="stylesheet" href="/css/donor.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #FF4E50, #FC913A);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 5px black;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 10px #FFD700;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #00E676;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        a:hover {
+            background: #00C853;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🩸 Available Blood Donors</h1>
+    <ul id="donor-list">Loading donors...</ul>
+    <a href="/">🔙 Back to Home</a>
+
+    <script>
+        // ✅ Fetch donors from JSON and display them
+        async function fetchDonors() {
+            try {
+                const response = await fetch('/donor.json');
+                if (!response.ok) throw new Error('Failed to load donor data');
+
+                const donors = await response.json();
+                const donorList = document.getElementById('donor-list');
+                donorList.innerHTML = '';
+
+                if (donors.length === 0) {
+                    donorList.innerHTML = '<li>No donors available right now. 😞</li>';
+                    return;
+                }
+
+                donors.forEach(donor => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${donor.name} - ${donor.bloodGroup} 📞 ${donor.contact} (${donor.city})`;
+                    donorList.appendChild(li);
+                });
+
+            } catch (error) {
+                console.error('❌ Error loading donors:', error);
+                document.getElementById('donor-list').innerHTML = 'Error loading donors. Please try again later.';
+            }
+        }
+
+        fetchDonors();
+    </script>
+
+</body>
+
+</html>

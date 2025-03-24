@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Blood Donors</title>
+        <link rel="stylesheet" href="/css/donor.css">
+    </head>
+
+    <div class="logo-container">
+        <img src="/image/logo.png" alt="Blood Connect Logo" class="logo">
+    </div>
+    
+<body>
+    
+    <!-- 🏠 Go Home Icon -->
+    <a href="/" class="home-icon">🏠</a>
+    <div class="container">
+        <h1>🩸 Available Blood Donors</h1>
+
+        <!-- 🔍 Filter Section -->
+        <div class="filter-section">
+            <input type="text" id="cityFilter" placeholder="Search by City" oninput="filterDonors()">
+            <select id="bloodGroupFilter" onchange="filterDonors()">
+                <option value="">All Blood Groups</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+
+        <!-- 📊 Donor Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Contact</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody id="donor-table-body">
+                <!-- Donor List will load here -->
+            </tbody>
+        </table>
+
+        <!-- 🚨 Error Message for Failed Load -->
+        <p id="error-message" class="hidden">Failed to load donor data. Please try again later.</p>
+
+    </div>
+
+    <!-- 📜 JavaScript for Loading and Filtering Donor Data -->
+     <script>
+        let donorData = [];
+
+        // 📥 Fetch Donor Data from JSON
+        async function loadDonors() {
+            try {
+                const response = await fetch('/donor.json');
+                if (!response.ok) throw new Error("Failed to fetch data");
+                donorData = await response.json();
+                displayDonors(donorData);
+            } catch (error) {
+                document.getElementById("error-message").classList.remove("hidden");
+                console.error("Error loading donor data:", error);
+            }
+        }
+
+        // 📋 Display Donors in the Table
+        function displayDonors(donors) {
+            const tableBody = document.getElementById("donor-table-body");
+            tableBody.innerHTML = "";
+
+            if (donors.length === 0) {
+                tableBody.innerHTML = "<tr><td colspan='4'>No donors found.</td></tr>";
+                return;
+            }
+
+            donors.forEach((donor, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${donor.name}</td>
+                    <td>${donor.bloodGroup}</td>
+                    <td>${donor.contact}</td> <!-- 📞 Contact number displayed directly -->
+                    <td>${donor.city}</td>
+                `;
+                row.style.animation = `fadeIn 0.5s ease ${index * 0.1}s both`; // Smooth animation
+                tableBody.appendChild(row);
+            });
+        }
+
+        // 🔍 Filter Donors by Blood Group and City
+        function filterDonors() {
+            const city = document.getElementById("cityFilter").value.toLowerCase().trim();
+            const bloodGroup = document.getElementById("bloodGroupFilter").value;
+
+            const filtered = donorData.filter(donor =>
+                donor.city.toLowerCase().includes(city) &&
+                (bloodGroup === "" || donor.bloodGroup === bloodGroup)
+            );
+
+            displayDonors(filtered);
+        }
+
+        // 🌐 Load Donor Data on Page Load
+        window.onload = loadDonors;
+    </script>
+
+</body>
+
+</html>
