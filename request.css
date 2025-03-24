@@ -1,6 +1,6 @@
 /* 🔹 Body Styling */
 body {
-    background: url('/image/newrequest .jpg') no-repeat center center/cover;
+    background: url('./newrequest .jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
