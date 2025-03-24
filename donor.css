@@ -19,7 +19,7 @@
 
 /* 📜 Body Styling */
 body {
-    background: url('/image/human-blood-donate.jpg') no-repeat center center/cover;
+    background: url('./human-blood-donate.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
