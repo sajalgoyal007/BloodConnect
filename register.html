@@ -1,291 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register as Donor</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="./register.css">
-    <style>
-        /* Go Home Icon Styling */
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 2rem;
-            text-decoration: none;
-            color: #e74c3c;
-        }
-        .home-icon:hover {
-            color: #c0392b;
-        }
-        /* Animation for errors */
-        .shake {
-            animation: shake 0.5s;
-            border-color: #e74c3c !important;
-        }
-=======
-    <style>
-        :root {
-            --primary: #e74c3c;
-            --secondary: #c0392b;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-
-        .home-icon {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            text-decoration: none;
-            color: var(--primary);
-            z-index: 1000;
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: var(--secondary);
-        }
-
-        .error-message {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .shake {
-            animation: shake 0.5s;
-            border-color: var(--secondary) !important;
-        }
-
->>>>>>> 643c091 (Your proper commit message)
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-<<<<<<< HEAD
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.8rem;
-            display: block;
-            margin-top: 5px;
-        }
-=======
->>>>>>> 643c091 (Your proper commit message)
-    </style>
 </head>
+
 <body>
-<<<<<<< HEAD
+
+    <!-- Logo Container -->
+    <div class="logo-container">
+        <img src="./logo.png" alt="Blood Connect Logo" class="logo">
+    </div>
+
     <!-- 🏠 Go Home Icon -->
     <a href="/" class="home-icon">🏠</a>
 
-    <!-- Form Container -->
-    <div class="form-container">
+    <!-- Form Container with Animation -->
+    <div class="form-container" id="formContainer">
         <h1>🩸 Register as a Blood Donor</h1>
 
+        <!-- Form to Save Donor Information -->
         <form id="donorForm" action="/register" method="POST">
+
             <!-- Full Name -->
-=======
-    <a href="/" class="home-icon">🏠</a>
-
-    <div class="form-container">
-        <h1>🩸 Become a Blood Donor</h1>
-        <form id="donorForm">
->>>>>>> 643c091 (Your proper commit message)
             <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-                <div class="error-message"></div>
-            </div>
-
-            <div class="form-group">
-<<<<<<< HEAD
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" placeholder="Enter your age" min="18" max="65">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                 <small class="error-message" aria-live="polite"></small>
-=======
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" min="18" max="65">
->>>>>>> 643c091 (Your proper commit message)
             </div>
 
+            <!-- Age -->
             <div class="form-group">
-                <label for="bloodGroup">Blood Type</label>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" min="18" max="65" required>
+                <small class="error-message" aria-live="polite"></small>
+            </div>
+
+            <!-- Blood Group -->
+            <div class="form-group">
+                <label for="bloodGroup">Blood Group:</label>
                 <select id="bloodGroup" name="bloodGroup" required>
-                    <option value="">Select Blood Group</option>
+                    <option value="">Select your blood group</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
                     <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
                 </select>
-                <div class="error-message"></div>
+                <small class="error-message" aria-live="polite"></small>
             </div>
 
+            <!-- Contact Number -->
             <div class="form-group">
-<<<<<<< HEAD
                 <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number" required>
                 <small class="error-message" aria-live="polite"></small>
-=======
-                <label for="contact">Contact Number</label>
-                <input type="tel" id="contact" name="contact" 
-                       pattern="[0-9]{10}" placeholder="10-digit number" required>
-                <div class="error-message"></div>
->>>>>>> 643c091 (Your proper commit message)
             </div>
 
+            <!-- City -->
             <div class="form-group">
-<<<<<<< HEAD
                 <label for="city">City:</label>
-                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                <input type="text" id="city" name="city" placeholder="Enter your locality with city" required>
                 <small class="error-message" aria-live="polite"></small>
             </div>
 
-            <!-- Location Capture -->
+            <!-- Location Capture Button -->
             <div class="form-group">
                 <label>Location:</label>
                 <button type="button" onclick="getLocation()">📍 Get My Location</button>
-                <input type="hidden" id="latitude" name="latitude" required>
-                <input type="hidden" id="longitude" name="longitude" required>
-                <small id="locationMessage" class="error-message"></small>
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+                <small id="locationMessage" aria-live="polite"></small>
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="submit-btn">Register</button>
-=======
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" required>
-                <div class="error-message"></div>
-            </div>
 
-            <div class="form-group">
-                <button type="button" onclick="getLocation()">📍 Detect My Location</button>
-                <input type="hidden" id="latitude" name="latitude" required>
-                <input type="hidden" id="longitude" name="longitude" required>
-                <div id="locationStatus" class="error-message"></div>
-            </div>
-
-            <button type="submit">Register as Donor</button>
->>>>>>> 643c091 (Your proper commit message)
         </form>
     </div>
 
+    <!-- JavaScript for Validation and Location -->
     <script>
-<<<<<<< HEAD
         // Form Validation
-        document.getElementById('donorForm').addEventListener('submit', function(event) {
+        document.getElementById('donorForm').addEventListener('submit', function (event) {
             const inputs = document.querySelectorAll('input[required], select[required]');
             let isValid = true;
-=======
-        document.getElementById('donorForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            clearErrors();
->>>>>>> 643c091 (Your proper commit message)
 
-            const formData = {
-                name: document.getElementById('name').value,
-                bloodGroup: document.getElementById('bloodGroup').value,
-                contact: document.getElementById('contact').value,
-                city: document.getElementById('city').value,
-                age: document.getElementById('age').value,
-                latitude: document.getElementById('latitude').value,
-                longitude: document.getElementById('longitude').value
-            };
-
-            if (validateForm(formData)) {
-                try {
-                    const response = await fetch('/register', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-
-                    if (response.ok) {
-                        window.location.href = '/success_page.html';
-                    } else {
-                        showError('Registration failed. Please try again.');
-                    }
-                } catch (error) {
-                    showError('Network error. Please check your connection.');
-                }
-            }
-        });
-
-        function validateForm(data) {
-            let isValid = true;
-            
-            // Required fields check
-            const required = ['name', 'bloodGroup', 'contact', 'city', 'latitude', 'longitude'];
-            required.forEach(field => {
-                if (!data[field]) {
-                    showError(`${field} is required`, field);
+            inputs.forEach(input => {
+                const errorMessage = input.nextElementSibling;
+                if (!input.value.trim()) {
+                    errorMessage.textContent = `${input.previousElementSibling.textContent} is required.`;
+                    input.classList.add('shake');
                     isValid = false;
-<<<<<<< HEAD
                 } else if (input.id === 'contact' && !/^[0-9]{10}$/.test(input.value)) {
                     errorMessage.textContent = 'Enter a valid 10-digit phone number.';
+                    input.classList.add('shake');
+                    isValid = false;
+                } else if (input.id === 'age' && (input.value < 18 || input.value > 65)) {
+                    errorMessage.textContent = 'Age must be between 18 and 65.';
                     input.classList.add('shake');
                     isValid = false;
                 } else {
@@ -294,89 +112,26 @@
                 }
             });
 
-            if (!isValid) {
-                event.preventDefault();
-                document.getElementById('locationMessage').textContent = 'Please fill all required fields.';
-            }
+            if (!isValid) event.preventDefault();
         });
-=======
-                }
-            });
 
-            // Contact number validation
-            if (data.contact && !/^\d{10}$/.test(data.contact)) {
-                showError('Invalid phone number (10 digits required)', 'contact');
-                isValid = false;
-            }
-
-            return isValid;
-        }
->>>>>>> 643c091 (Your proper commit message)
-
+        // Capture User Location
         function getLocation() {
-            const status = document.getElementById('locationStatus');
+            const locationMessage = document.getElementById('locationMessage');
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-<<<<<<< HEAD
-                    (position) => {
-                        document.getElementById('latitude').value = position.coords.latitude;
-                        document.getElementById('longitude').value = position.coords.longitude;
-                        locationMessage.textContent = 'Location captured!';
-                        locationMessage.style.color = 'green';
-                    },
-                    () => {
-                        locationMessage.textContent = 'Unable to get your location.';
-                        locationMessage.style.color = '#e74c3c';
-                    }
-                );
+                navigator.geolocation.getCurrentPosition((position) => {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                    locationMessage.textContent = '✅ Location Captured Successfully!';
+                }, () => {
+                    locationMessage.textContent = '❌ Unable to capture location.';
+                });
             } else {
-                locationMessage.textContent = 'Geolocation not supported by your browser.';
-                locationMessage.style.color = '#e74c3c';
+                locationMessage.textContent = '❌ Geolocation is not supported by your browser.';
             }
         }
-
-        // Try to get location automatically on page load
-=======
-                    position => {
-                        document.getElementById('latitude').value = position.coords.latitude;
-                        document.getElementById('longitude').value = position.coords.longitude;
-                        status.textContent = 'Location captured!';
-                        status.style.color = 'green';
-                    },
-                    error => {
-                        status.textContent = 'Error: ' + error.message;
-                        status.style.color = 'var(--secondary)';
-                    }
-                );
-            } else {
-                status.textContent = 'Geolocation not supported by this browser.';
-                status.style.color = 'var(--secondary)';
-            }
-        }
-
-        function showError(message, fieldId) {
-            if (fieldId) {
-                const field = document.getElementById(fieldId);
-                const errorDiv = field.parentElement.querySelector('.error-message');
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-                field.classList.add('shake');
-                setTimeout(() => field.classList.remove('shake'), 500);
-            } else {
-                alert(message);
-            }
-        }
-
-        function clearErrors() {
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.textContent = '';
-                el.style.display = 'none';
-            });
-        }
-
-        // Auto-get location on load
->>>>>>> 643c091 (Your proper commit message)
-        window.onload = getLocation;
     </script>
+
 </body>
+
 </html>
