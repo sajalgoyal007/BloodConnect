@@ -6,71 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Blood</title>
     <link rel="stylesheet" href="./request.css">
-</head>
-
-<body>
-
-    <!-- Go Home Icon -->
-    <a href="/" class="home-icon">🏠</a>
-
-    <div class="form-container">
-        <h1>🩸 Request Blood, We'll Help You Find a Donor</h1>
-
-        <form id="requestForm" action="/submit_request" method="POST">
-
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="bloodGroup">Blood Group:</label>
-                <select id="bloodGroup" name="bloodGroup" required>
-                    <option value="">Select your blood group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="hospital">Hospital Name:</label>
-                <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
-            </div>
-
-            <!-- Hidden location fields -->
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
-
-            <button type="submit" class="submit-btn">Request Blood</button>
-
-        </form>
-    </div>
-
-    <script>
-        // Capture user location on load
-        window.onload = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    document.getElementById('latitude').value = position.coords.latitude;
-                    document.getElementById('longitude').value = position.coords.longitude;
-                }, (error) => {
-                    alert('⚠️ Location access denied. Please enter manually.');
-                });
-            }
-        };
-    </script>
-
     <style>
         /* Go Home Icon Styling */
         .home-icon {
@@ -81,12 +16,105 @@
             text-decoration: none;
             color: #e74c3c;
         }
-
         .home-icon:hover {
             color: #c0392b;
         }
+        /* Error message styling */
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 5px;
+        }
     </style>
+</head>
 
+<body>
+    <!-- Go Home Icon -->
+    <a href="/" class="home-icon">🏠</a>
+
+    <div class="form-container">
+        <h1>🩸 Request Blood, We'll Help You Find a Donor</h1>
+
+        <form id="requestForm" action="/submit_request" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="bloodGroup">Blood Group:</label>
+                <select id="bloodGroup" name="bloodGroup" required>
+                    <option value="">Select blood group needed</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="hospital">Hospital Name:</label>
+                <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
+                <small class="error-message"></small>
+            </div>
+
+            <!-- Hidden location fields -->
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+
+            <button type="submit" class="submit-btn">Request Blood</button>
+        </form>
+    </div>
+
+    <script>
+        // Form validation
+        document.getElementById('requestForm').addEventListener('submit', function(event) {
+            const inputs = document.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const errorMessage = input.nextElementSibling;
+                if (!input.value.trim()) {
+                    errorMessage.textContent = `${input.previousElementSibling.textContent} is required.`;
+                    isValid = false;
+                } else if (input.id === 'contact' && !/^[0-9]{10}$/.test(input.value)) {
+                    errorMessage.textContent = 'Enter a valid 10-digit phone number.';
+                    isValid = false;
+                } else {
+                    errorMessage.textContent = '';
+                }
+            });
+
+            if (!isValid) event.preventDefault();
+        });
+
+        // Capture user location on load
+        window.onload = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                    },
+                    (error) => {
+                        console.error('Error getting location:', error);
+                    }
+                );
+            }
+        };
+    </script>
 </body>
-
 </html>

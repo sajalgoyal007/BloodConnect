@@ -6,25 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register as Donor</title>
     <link rel="stylesheet" href="./register.css">
+    <style>
+        /* Go Home Icon Styling */
+        .home-icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            text-decoration: none;
+            color: #e74c3c;
+        }
+        .home-icon:hover {
+            color: #c0392b;
+        }
+        /* Animation for errors */
+        .shake {
+            animation: shake 0.5s;
+            border-color: #e74c3c !important;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 
 <body>
-
-    <!-- Logo Container -->
-    <div class="logo-container">
-        <img src="./logo.png" alt="Blood Connect Logo" class="logo">
-    </div>
-
     <!-- 🏠 Go Home Icon -->
     <a href="/" class="home-icon">🏠</a>
 
-    <!-- Form Container with Animation -->
-    <div class="form-container" id="formContainer">
+    <!-- Form Container -->
+    <div class="form-container">
         <h1>🩸 Register as a Blood Donor</h1>
 
-        <!-- Form to Save Donor Information -->
         <form id="donorForm" action="/register" method="POST">
-
             <!-- Full Name -->
             <div class="form-group">
                 <label for="name">Full Name:</label>
@@ -35,7 +57,7 @@
             <!-- Age -->
             <div class="form-group">
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" placeholder="Enter your age" min="18" max="65" required>
+                <input type="number" id="age" name="age" placeholder="Enter your age" min="18" max="65">
                 <small class="error-message" aria-live="polite"></small>
             </div>
 
@@ -59,36 +81,33 @@
             <!-- Contact Number -->
             <div class="form-group">
                 <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number" required>
+                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
                 <small class="error-message" aria-live="polite"></small>
             </div>
 
             <!-- City -->
             <div class="form-group">
                 <label for="city">City:</label>
-                <input type="text" id="city" name="city" placeholder="Enter your locality with city" required>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
                 <small class="error-message" aria-live="polite"></small>
             </div>
 
-            <!-- Location Capture Button -->
+            <!-- Location Capture -->
             <div class="form-group">
                 <label>Location:</label>
                 <button type="button" onclick="getLocation()">📍 Get My Location</button>
-                <input type="hidden" id="latitude" name="latitude">
-                <input type="hidden" id="longitude" name="longitude">
-                <small id="locationMessage" aria-live="polite"></small>
+                <input type="hidden" id="latitude" name="latitude" required>
+                <input type="hidden" id="longitude" name="longitude" required>
+                <small id="locationMessage" class="error-message"></small>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="submit-btn">Register</button>
-
         </form>
     </div>
 
-    <!-- JavaScript for Validation and Location -->
     <script>
         // Form Validation
-        document.getElementById('donorForm').addEventListener('submit', function (event) {
+        document.getElementById('donorForm').addEventListener('submit', function(event) {
             const inputs = document.querySelectorAll('input[required], select[required]');
             let isValid = true;
 
@@ -102,36 +121,42 @@
                     errorMessage.textContent = 'Enter a valid 10-digit phone number.';
                     input.classList.add('shake');
                     isValid = false;
-                } else if (input.id === 'age' && (input.value < 18 || input.value > 65)) {
-                    errorMessage.textContent = 'Age must be between 18 and 65.';
-                    input.classList.add('shake');
-                    isValid = false;
                 } else {
                     errorMessage.textContent = '';
                     input.classList.remove('shake');
                 }
             });
 
-            if (!isValid) event.preventDefault();
+            if (!isValid) {
+                event.preventDefault();
+                document.getElementById('locationMessage').textContent = 'Please fill all required fields.';
+            }
         });
 
         // Capture User Location
         function getLocation() {
             const locationMessage = document.getElementById('locationMessage');
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    document.getElementById('latitude').value = position.coords.latitude;
-                    document.getElementById('longitude').value = position.coords.longitude;
-                    locationMessage.textContent = '✅ Location Captured Successfully!';
-                }, () => {
-                    locationMessage.textContent = '❌ Unable to capture location.';
-                });
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                        locationMessage.textContent = 'Location captured!';
+                        locationMessage.style.color = 'green';
+                    },
+                    () => {
+                        locationMessage.textContent = 'Unable to get your location.';
+                        locationMessage.style.color = '#e74c3c';
+                    }
+                );
             } else {
-                locationMessage.textContent = '❌ Geolocation is not supported by your browser.';
+                locationMessage.textContent = 'Geolocation not supported by your browser.';
+                locationMessage.style.color = '#e74c3c';
             }
         }
+
+        // Try to get location automatically on page load
+        window.onload = getLocation;
     </script>
-
 </body>
-
 </html>
