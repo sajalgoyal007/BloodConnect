@@ -1,11 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> bn
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Blood</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="./request.css">
+</head>
+
+<body>
+
+    <!-- Go Home Icon -->
+    <a href="/" class="home-icon">🏠</a>
+
+    <div class="form-container">
+        <h1>🩸 Request Blood, We'll Help You Find a Donor</h1>
+
+        <form id="requestForm" action="/submit_request" method="POST">
+
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bloodGroup">Blood Group:</label>
+                <select id="bloodGroup" name="bloodGroup" required>
+                    <option value="">Select your blood group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hospital">Hospital Name:</label>
+                <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
+            </div>
+
+            <!-- Hidden location fields -->
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+
+            <button type="submit" class="submit-btn">Request Blood</button>
+
+        </form>
+    </div>
+
+    <script>
+        // Capture user location on load
+        window.onload = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                }, (error) => {
+                    alert('⚠️ Location access denied. Please enter manually.');
+                });
+            }
+        };
+    </script>
+
     <style>
         /* Go Home Icon Styling */
         .home-icon {
@@ -16,250 +81,12 @@
             text-decoration: none;
             color: #e74c3c;
         }
+
         .home-icon:hover {
             color: #c0392b;
         }
-        /* Error message styling */
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.8rem;
-            display: block;
-            margin-top: 5px;
-        }
     </style>
-</head>
 
-<body>
-    <!-- Go Home Icon -->
-    <a href="/" class="home-icon">🏠</a>
-
-    <div class="form-container">
-        <h1>🩸 Request Blood, We'll Help You Find a Donor</h1>
-
-        <form id="requestForm" action="/submit_request" method="POST">
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                <small class="error-message"></small>
-            </div>
-
-            <div class="form-group">
-                <label for="bloodGroup">Blood Group:</label>
-                <select id="bloodGroup" name="bloodGroup" required>
-                    <option value="">Select blood group needed</option>
-=======
-    <style>
-        /* Reuse styles from register.html */
-     /*   :root, body, .home-icon, .form-container, h1, 
-        .form-group, label, input, select, button */ 
-
-        .results-container {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .donor-card {
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary);
-            background: #f8f9fa;
-        }
-
-        .donor-card h3 {
-            margin: 0 0 8px 0;
-            color: var(--primary);
-        }
-
-        .donor-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-        }
-    </style>
-</head>
-<body>
-    <a href="/" class="home-icon">🏠</a>
-
-    <div class="form-container">
-        <h1>🩸 Find Blood Donors</h1>
-        <form id="requestForm">
-            <div class="form-group">
-                <label for="patientName">Patient Name</label>
-                <input type="text" id="patientName" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="requiredBlood">Blood Group Needed</label>
-                <select id="requiredBlood" name="bloodGroup" required>
-                    <option value="">Select Blood Group</option>
->>>>>>> 643c091 (Your proper commit message)
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-<<<<<<< HEAD
-                <small class="error-message"></small>
-            </div>
-
-            <div class="form-group">
-                <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
-                <small class="error-message"></small>
-            </div>
-
-            <div class="form-group">
-                <label for="hospital">Hospital Name:</label>
-                <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
-                <small class="error-message"></small>
-            </div>
-
-            <!-- Hidden location fields -->
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
-
-            <button type="submit" class="submit-btn">Request Blood</button>
-        </form>
-    </div>
-
-    <script>
-        // Form validation
-        document.getElementById('requestForm').addEventListener('submit', function(event) {
-            const inputs = document.querySelectorAll('input[required], select[required]');
-            let isValid = true;
-
-            inputs.forEach(input => {
-                const errorMessage = input.nextElementSibling;
-                if (!input.value.trim()) {
-                    errorMessage.textContent = `${input.previousElementSibling.textContent} is required.`;
-                    isValid = false;
-                } else if (input.id === 'contact' && !/^[0-9]{10}$/.test(input.value)) {
-                    errorMessage.textContent = 'Enter a valid 10-digit phone number.';
-                    isValid = false;
-                } else {
-                    errorMessage.textContent = '';
-                }
-            });
-
-            if (!isValid) event.preventDefault();
-        });
-
-        // Capture user location on load
-        window.onload = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        document.getElementById('latitude').value = position.coords.latitude;
-                        document.getElementById('longitude').value = position.coords.longitude;
-                    },
-                    (error) => {
-                        console.error('Error getting location:', error);
-                    }
-                );
-            }
-        };
-=======
-            </div>
-
-            <div class="form-group">
-                <label for="hospital">Hospital Name</label>
-                <input type="text" id="hospital" name="hospital" required>
-            </div>
-
-            <div class="form-group">
-                <label for="contact">Contact Number</label>
-                <input type="tel" id="contact" name="contact" 
-                       pattern="[0-9]{10}" required>
-            </div>
-
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
-
-            <button type="submit">Search Donors</button>
-        </form>
-
-        <div id="resultsContainer" class="results-container" style="display: none;">
-            <h2>Matching Donors:</h2>
-            <div id="donorList"></div>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('requestForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('patientName').value,
-                bloodGroup: document.getElementById('requiredBlood').value,
-                contact: document.getElementById('contact').value,
-                hospital: document.getElementById('hospital').value,
-                latitude: document.getElementById('latitude').value,
-                longitude: document.getElementById('longitude').value
-            };
-
-            try {
-                const response = await fetch('/submit_request', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const donors = await response.json();
-                displayResults(donors);
-            } catch (error) {
-                alert('Error processing request. Please try again.');
-            }
-        });
-
-        function displayResults(donors) {
-            const container = document.getElementById('resultsContainer');
-            const list = document.getElementById('donorList');
-            
-            container.style.display = 'block';
-            list.innerHTML = '';
-
-            if (donors.length === 0) {
-                list.innerHTML = '<p>No donors found matching your criteria.</p>';
-                return;
-            }
-
-            donors.forEach(donor => {
-                const donorCard = document.createElement('div');
-                donorCard.className = 'donor-card';
-                donorCard.innerHTML = `
-                    <h3>${donor.name}</h3>
-                    <div class="donor-info">
-                        <div>
-                            <p><strong>Blood Group:</strong> ${donor.bloodGroup}</p>
-                            <p><strong>Contact:</strong> ${donor.contact}</p>
-                        </div>
-                        <div>
-                            <p><strong>Distance:</strong> ${donor.distance.toFixed(1)} km</p>
-                            <p><strong>Location:</strong> ${donor.city}</p>
-                        </div>
-                    </div>
-                `;
-                list.appendChild(donorCard);
-            });
-        }
-
-        // Auto-get location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                document.getElementById('latitude').value = position.coords.latitude;
-                document.getElementById('longitude').value = position.coords.longitude;
-            });
-        }
->>>>>>> 643c091 (Your proper commit message)
-    </script>
 </body>
+
 </html>
